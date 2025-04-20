@@ -1,0 +1,11 @@
+{
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
+  },
+  "rust-analyzer.inlayHints.enable": true,
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "errorLens.enabled": true
+}
