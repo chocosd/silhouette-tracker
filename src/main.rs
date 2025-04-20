@@ -1,15 +1,21 @@
+mod cli;
 mod processing;
 mod utils;
 
+use clap::Parser;
+use cli::CliArgs;
+use utils::infer_output_path;
+
 fn main() {
-    println!("📸 Starting silhouette simulation...");
+    let args = CliArgs::parse();
 
-    let input_path = "test_image_1.jpg";
-    let output_path = "output_silhouette.png";
+    let output_path = infer_output_path(&args.input, &args.output);
 
-    if let Err(e) = processing::process_image(input_path, output_path) {
-        eprintln!("❌ Error: {}", e);
-    } else {
-        println!("✅ Silhouette saved to {}", output_path);
+    println!("📸 Input: {}", args.input);
+    println!("💾 Output: {}", output_path.display());
+
+    match processing::process_image(&args.input, output_path.to_str().unwrap()) {
+        Ok(_) => println!("✅ Silhouette saved to {}", output_path.display()),
+        Err(e) => eprintln!("❌ Error: {}", e),
     }
 }
